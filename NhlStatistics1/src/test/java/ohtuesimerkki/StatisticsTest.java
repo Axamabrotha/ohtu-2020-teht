@@ -35,12 +35,15 @@ public class StatisticsTest {
         }
     };
     
-    Statistics stats;
+
     
     
-//    public StatisticsTest() {
-//    }
-//    
+    public StatisticsTest(    Statistics stats;) {
+//        PlayerReader reader = new PlayerReader("https://nhlstatisticsforohtu.herokuapp.com/players.txt");
+//        players = reader.getPlayers(); 
+        
+    }
+    
 //    @BeforeClass
 //    public static void setUpClass() {
 //    }
@@ -82,7 +85,7 @@ public class StatisticsTest {
         System.out.println("team");
         String teamName = "EDM";
         Statistics instance = stats;
-        List<Player> expResult = null;
+        List<Player> expResult = null
         List<Player> result = instance.team(teamName);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
