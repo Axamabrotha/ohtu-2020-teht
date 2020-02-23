@@ -6,12 +6,8 @@
 package ohtuesimerkki;
 
 import java.util.ArrayList;
-import java.util.List;
-import org.junit.Before;
 import ohtuesimerkki.Statistics;
-import org.junit.*;
-import static org.junit.Assert.*;
-
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -23,8 +19,9 @@ import static org.junit.Assert.*;
  *
  * @author isuite
  */
-public class StatisticsTest {
-    Reader readerStub = new Reader() {
+public class StatisticsTest  {
+    
+        Reader readerStub = new Reader() {
             public List<Player> getPlayers() {
             ArrayList<Player> players = new ArrayList<>();
  
@@ -38,25 +35,64 @@ public class StatisticsTest {
         }
     };
     
-    Statistics stats;
-
-    public void haePelaaja() {
-        assertEquals("Semenko", stats.search("Semenko"));
-        System.out.println(stats.search("Semenko"));
+//    public StatisticsTest(Statistics stats) {
+//        PlayerReader reader = new PlayerReader("https://nhlstatisticsforohtu.herokuapp.com/players.txt");
+//        players = reader.getPlayers(); 
         
-}
+//    }
     
-    public void joukkueenPelaajat() {
-        assertEquals("EDM", stats.team("EDM"));
-}
-
-    public void pistePorssi() {
-        stats.topScorers(5);
-}
-    
+    Statistics stats;
+        
     @Before
-    public void setUp(){
-        // luodaan Statistics-olio joka käyttää "stubia"
+    public void setUp() {
+                // luodaan Statistics-olio joka käyttää "stubia"
         stats = new Statistics(readerStub);
-    }      
+    }
+    
+
+    /**
+     * Test of search method, of class Statistics.
+     */
+    @Test
+    public void testSearch() {
+        System.out.println("search");
+        String name = "Semenko";
+        Statistics instance = stats;
+        Player expResult = null;
+        Player result = instance.search(name);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of team method, of class Statistics.
+     */
+    @Test
+    public void testTeam() {
+        System.out.println("team");
+        String teamName = "EDM";
+        Statistics instance = stats;
+        List<Player> expResult = null;
+        List<Player> result = instance.team(teamName);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of topScorers method, of class Statistics.
+     */
+    @Test
+    public void testTopScorers() {
+        System.out.println("topScorers");
+        int howMany = 2;
+        Statistics instance = stats;
+        List<Player> expResult = null;
+        List<Player> result = instance.topScorers(howMany);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+    
 }
