@@ -37,22 +37,11 @@ public class StatisticsTest {
    
     Statistics stats;
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
     
     @Before
     public void setUp() {
         // luodaan Statistics-olio joka käyttää "stubia"
         stats = new Statistics(readerStub);
-    }
-
-    @After
-    public void tearDown() throws Exception {
     }
 
     /**
@@ -61,13 +50,14 @@ public class StatisticsTest {
     @Test
     public void testSearch() {
         System.out.println("search");
-        String name = "";
-        Statistics instance = null;
-        Player expResult = null;
-        Player result = instance.search(name);
+        String name = "Yzerman";
+        Statistics instance = stats;
+        Player expResult = stats.search(name);
+        Player result = stats.search(name);
+//        System.out.println(stats.search(name));
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -76,13 +66,13 @@ public class StatisticsTest {
     @Test
     public void testTeam() {
         System.out.println("team");
-        String teamName = "";
-        Statistics instance = null;
-        List<Player> expResult = null;
-        List<Player> result = instance.team(teamName);
+        String teamName = "EDM";
+        Statistics instance = stats;
+        List<Player> expResult = stats.team(teamName);
+        List<Player> result = stats.team(teamName);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -91,13 +81,14 @@ public class StatisticsTest {
     @Test
     public void testTopScorers() {
         System.out.println("topScorers");
-        int howMany = 0;
-        Statistics instance = null;
-        List<Player> expResult = null;
-        List<Player> result = instance.topScorers(howMany);
+        int howMany = 2;
+        Statistics instance = stats;
+        List<Player> expResult = stats.topScorers(howMany);
+        List<Player> result = stats.topScorers(howMany);
+        System.out.println(stats.topScorers(howMany));
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
     
 }
