@@ -14,7 +14,7 @@ public class Statistics {
     public Statistics(Reader lukija) {
         
         PlayerReader reader = new PlayerReader("https://nhlstatisticsforohtu.herokuapp.com/players.txt");
-        players = reader.getPlayers();       
+        players = lukija.getPlayers();       
     }
 
     public Player search(String name) {
