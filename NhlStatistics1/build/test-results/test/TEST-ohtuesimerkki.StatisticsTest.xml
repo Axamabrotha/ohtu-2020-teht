@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ohtuesimerkki.StatisticsTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-02-26T18:19:18" hostname="isuite-VirtualBox" time="2.172">
+<testsuite name="ohtuesimerkki.StatisticsTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-02-26T18:20:35" hostname="isuite-VirtualBox" time="2.22">
   <properties/>
-  <testcase name="testTeam" classname="ohtuesimerkki.StatisticsTest" time="1.371"/>
-  <testcase name="testTopScorers" classname="ohtuesimerkki.StatisticsTest" time="0.389"/>
-  <testcase name="testSearch" classname="ohtuesimerkki.StatisticsTest" time="0.396"/>
+  <testcase name="testTeam" classname="ohtuesimerkki.StatisticsTest" time="1.316"/>
+  <testcase name="testTopScorers" classname="ohtuesimerkki.StatisticsTest" time="0.509"/>
+  <testcase name="testSearch" classname="ohtuesimerkki.StatisticsTest" time="0.391"/>
   <system-out><![CDATA[team
 topScorers
 [Gretzky              EDM 35 + 89 = 124, Lemieux              PIT 45 + 54 = 99, Yzerman              DET 42 + 56 = 98]
