@@ -1,6 +1,8 @@
 package ohtu;
 
 import ohtu.verkkokauppa.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main {
 
@@ -10,12 +12,13 @@ public class Main {
 //            Pankki.getInstance(),
 //            Viitegeneraattori.getInstance()
 //        );
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
 
-    Viitegeneraattori viitegen = new Viitegeneraattori();
-    Kirjanpito kirjanpito      = new Kirjanpito();
-    Varasto varasto            = new Varasto(kirjanpito);
-    Pankki pankki              = new Pankki(kirjanpito);
-    Kauppa kauppa              = new Kauppa(varasto, pankki, viitegen);
+        Viitegeneraattori viitegen = new Viitegeneraattori();
+        Kirjanpito kirjanpito      = new Kirjanpito();
+        Varasto varasto            = new Varasto(kirjanpito);
+        Pankki pankki              = new Pankki(kirjanpito);
+        Kauppa kauppa              = new Kauppa(varasto, pankki, viitegen);
 
         // kauppa hoitaa yhden asiakkaan kerrallaan seuraavaan tapaan:
         kauppa.aloitaAsiointi();

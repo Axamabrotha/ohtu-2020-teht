@@ -5,10 +5,13 @@
  */
 package ohtu.verkkokauppa;
 
+import org.springframework.stereotype.Component;
+
 /**
  *
  * @author isuite
  */
+@Component
 public interface ViitegeneraattoriInterface {
 
     int uusi();

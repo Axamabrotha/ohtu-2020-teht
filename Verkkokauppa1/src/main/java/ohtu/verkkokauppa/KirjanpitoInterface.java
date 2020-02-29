@@ -6,11 +6,14 @@
 package ohtu.verkkokauppa;
 
 import java.util.ArrayList;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author isuite
  */
+
+@Component
 public interface KirjanpitoInterface {
 
     ArrayList<String> getTapahtumat();
