@@ -40,7 +40,30 @@ public class AuthenticationService {
 
     private boolean invalid(String username, String password) {
         // validity check of username and password
+        boolean usr = false;
+        boolean pwd = true;
+        
+        if (username.length() >= 3) {
+            char[] charArray = username.toCharArray();
+            for(int i=0; i<charArray.length; ++i) {
+                if(Character.isLowerCase(charArray[i]))
+                    usr = true;
+            }
+        } else usr = false;
+        
+        if (password.length() >= 8) {
+            char[] charArray2 = password.toCharArray();
+            
+            for(int k=0; k<charArray2.length; ++k) {
+                if(Character.isLetterOrDigit(charArray2[k]))
+                    pwd = true;
+            }
 
-        return false;
+            
+        } else pwd = false;
+        
+        if (usr == true && pwd == true) {
+            return false;
+        } else return true;
     }
 }

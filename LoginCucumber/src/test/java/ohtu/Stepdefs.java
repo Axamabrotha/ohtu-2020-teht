@@ -60,12 +60,78 @@ public class Stepdefs {
        app.run();
     }  
 
+    @Given("^command new is selected$")
+    public void commandNewSelected() throws Throwable {
+        inputLines.add("new");
+    }
+
+    @When("valid username {string} with valid password {string} are entered")
+    public void userCreationSuccessful(String username, String password) {
+       inputLines.add(username);
+       inputLines.add(password);
+       
+       io = new StubIO(inputLines); 
+       app = new App(io, auth);
+       app.run();
+    }  
+
+    @When("username {string} and password {string} are already taken")
+    public void credentialsTaken(String username, String password) {
+       inputLines.add(username);
+       inputLines.add(password);
+       
+       io = new StubIO(inputLines); 
+       app = new App(io, auth);
+       app.run();
+    } 
+    
+    @When("too short username {string} and valid password {string} are entered")
+    public void userNameTooShort(String username, String password) {
+       inputLines.add(username);
+       inputLines.add(password);
+       
+       io = new StubIO(inputLines); 
+       app = new App(io, auth);
+       app.run();
+    } 
+    
+    @When("valid username {string} and too short password {string} are entered")
+    public void pwdTooShort(String username, String password) {
+       inputLines.add(username);
+       inputLines.add(password);
+       
+       io = new StubIO(inputLines); 
+       app = new App(io, auth);
+       app.run();
+    }
+    
+    @When("user {string} with password {string} is created")
+    public void userCreated(String username, String password) {
+       inputLines.add(username);
+       inputLines.add(password);
+       
+       io = new StubIO(inputLines); 
+       app = new App(io, auth);
+       app.run();
+       
+       inputLines.add("new");
+               
+       inputLines.add(username);
+       inputLines.add(password);
+       
+       io = new StubIO(inputLines); 
+       app = new App(io, auth);
+       app.run();        
+    }
+    
     @Then("system will respond with {string}")
     public void systemWillRespondWith(String expectedOutput) {
         assertTrue(io.getPrints().contains(expectedOutput));
     }    
-
-
     
+//    @Then("system will respond with {string}")
+//    public void systemWillRespondWith2(String expectedOutput) {
+//        assertTrue(io.getPrints().contains(expectedOutput));
+//    }  
 
 }
