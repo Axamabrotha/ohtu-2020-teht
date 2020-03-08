@@ -38,11 +38,24 @@ public class Stepdefs {
         logInWith(username, password);
     }    
     
+    @When("username {string} with password {string} does not exist")
+    public void userDoesNotExist(String username, String password) {
+        logInWith(username, password);
+    }  
+    
     @Then("user is not logged in and error message is given")
     public void userIsNotLoggedInAndErrorMessageIsGiven() {
         pageHasContent("invalid username or password");
         pageHasContent("Give your credentials to login");
     }    
+    
+  
+    
+//    @Then("user is not logged in and error message is given")
+//    public void userIsNotFound() {
+//        pageHasContent("invalid username or password");
+//        pageHasContent("Give your credentials to login");
+//    }   
     
     @When("username {string} and password {string} are given")
     public void usernameAndPasswordAreGiven(String username, String password) throws Throwable {
