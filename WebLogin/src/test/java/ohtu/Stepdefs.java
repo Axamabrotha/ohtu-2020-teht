@@ -101,11 +101,6 @@ public class Stepdefs {
         createAccountWith(username, password, passwordConfirmation);
     } 
     
-//    @Then("user is not created and error {string} is reported")
-//    public void tooShortPwdError() {
-//        pageHasContent("password should have at least 8 characters");
-//    } 
-    
     @When("valid username {string} and valid password {string} are entered but password and password confirmation {string} do not match")
     public void pwdConfirmationNoMatch(String username, String password, String passwordConfirmation) throws Throwable {
         createAccountWith(username, password, passwordConfirmation);
@@ -114,9 +109,65 @@ public class Stepdefs {
     @Then("user is not created and error {string} is reported")
     public void invalidCredentialsError(String pageContent) throws Throwable {
         assertTrue(driver.getPageSource().contains(pageContent));
-//        pageHasContent("username should have at least 3 characters");
-//        pageHasContent("password should have at least 8 characters");
-//        pageHasContent("password and password confirmation do not match");
+    }
+    
+    @Given("user with username {string} with password {string} is successfully created")
+    public void userCreatedSuccessfully(String username, String password) throws Throwable {
+        username = "lea";
+        password = "salainen1";
+        String passwordConfirmation = password;
+        
+        newIsSelected();
+        createAccountWith(username, password, passwordConfirmation);
+    } 
+       
+    @When("new user logs out and selects login")
+    public void goToLogin() {
+                
+        WebElement element = driver.findElement(By.linkText("continue to application mainpage"));
+        element.click();
+        element = driver.findElement(By.linkText("logout"));
+        element.click();
+        loginIsSelected();
+    }
+    
+    @When("user with username {string} and password {string} logs in")
+    public void newUserLogsIn(String username, String password) throws Throwable {
+        logInWith(username, password);
+    }   
+    
+    @Then("the new user is logged in successfully")
+    public void newUserIsLoggedIn() {
+        pageHasContent("Ohtu Application main page");
+    }
+    
+    @Given("user with username {string} and password {string} is tried to be created")
+    public void userCreationUnsuccessful(String username, String password) throws Throwable {
+        username = "aa";
+        password = "bad";
+        String passwordConfirmation = password;
+        
+        newIsSelected();
+        createAccountWith(username, password, passwordConfirmation);
+    } 
+       
+    @When("user goes to login")
+    public void goToLogin2() {
+                
+        WebElement element = driver.findElement(By.linkText("back to home"));
+        element.click();
+        loginIsSelected();
+    }
+    
+    @When("user with username {string} and password {string} tries to log in")
+    public void newUserTriesToLogIn(String username, String password) throws Throwable {
+        logInWith(username, password);
+    }   
+    
+    @Then("user cannot log in with inexisting account and error message is given")
+    public void newUserNotLoggedIn() {
+        pageHasContent("invalid username or password");
+        pageHasContent("Give your credentials to login");
     }
     
     @After
