@@ -105,6 +105,16 @@ public class Stepdefs {
        app.run();
     }
     
+    @When("valid username {string} is entered with password {string} long enough but consisting of only letters")
+    public void pwdOnlyLetters(String username, String password) {
+       inputLines.add(username);
+       inputLines.add(password);
+       
+       io = new StubIO(inputLines); 
+       app = new App(io, auth);
+       app.run();
+    }
+    
     @When("user {string} with password {string} is created")
     public void userCreated(String username, String password) {
        inputLines.add(username);
