@@ -29,6 +29,11 @@ public abstract class Komento {
         setResult();
     };
     
+    public void peru() {
+        sovellus.aseta(edellinenTulos);
+        setResult();
+    };
+    
     protected abstract void operate();
     
     protected void getSyote() {
