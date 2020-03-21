@@ -1,80 +1,77 @@
 package ohtu;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TennisGame {
     
-    private int m_score1 = 0;
-    private int m_score2 = 0;
+    private int player1Score = 0;
+    private int player2Score = 0;
     private String player1Name;
     private String player2Name;
-
+    private Map<Integer, String> alustaTulokset = new HashMap<>();
+    
     public TennisGame(String player1Name, String player2Name) {
         this.player1Name = player1Name;
         this.player2Name = player2Name;
+        alustaTulokset();
     }
 
     public void wonPoint(String playerName) {
-        if (playerName == "player1")
-            m_score1 += 1;
-        else
-            m_score2 += 1;
+        if (playerName == player1Name)
+            player1Score += 1;
+        if (playerName == player2Name)
+            player2Score += 1;
     }
 
     public String getScore() {
-        String score = "";
-        int tempScore=0;
-        if (m_score1==m_score2)
-        {
-            switch (m_score1)
-            {
-                case 0:
-                        score = "Love-All";
-                    break;
-                case 1:
-                        score = "Fifteen-All";
-                    break;
-                case 2:
-                        score = "Thirty-All";
-                    break;
-                case 3:
-                        score = "Forty-All";
-                    break;
-                default:
-                        score = "Deuce";
-                    break;
-                
-            }
-        }
-        else if (m_score1>=4 || m_score2>=4)
-        {
-            int minusResult = m_score1-m_score2;
-            if (minusResult==1) score ="Advantage player1";
-            else if (minusResult ==-1) score ="Advantage player2";
-            else if (minusResult>=2) score = "Win for player1";
-            else score ="Win for player2";
-        }
-        else
-        {
-            for (int i=1; i<3; i++)
-            {
-                if (i==1) tempScore = m_score1;
-                else { score+="-"; tempScore = m_score2;}
-                switch(tempScore)
-                {
-                    case 0:
-                        score+="Love";
-                        break;
-                    case 1:
-                        score+="Fifteen";
-                        break;
-                    case 2:
-                        score+="Thirty";
-                        break;
-                    case 3:
-                        score+="Forty";
-                        break;
-                }
-            }
-        }
-        return score;
+        if (player1Score==player2Score) 
+            return tasaPeli();
+        else if (player1Score>=4 || player2Score>=4) 
+            return pisteEro();
+        return ottelunTulos();
     }
+    
+    private String tasaPeli() {
+        String tulos = alustaTulokset.get(player1Score);
+        if (player1Score == 4) return "Deuce";
+        else return String.format("%s-All", tulos);
+    }
+    
+    private String pisteEro() {
+        int ero = player1Score - player2Score;
+        if (Math.abs(ero) == 1) {
+            return kumpiJohtaa(ero);
+        } else {
+            return pelaajaVoitti(ero);
+        }
+    }
+        
+    private String pelaajaVoitti(int ero) {
+        return String.format("Win for %s", tarkistaJohto(ero));
+    }
+
+    private String kumpiJohtaa(int ero) {
+        return String.format("Advantage %s", tarkistaJohto(ero));
+    }
+        
+    private String tarkistaJohto(int ero) {
+        if (ero > 0) {
+            return player1Name;
+        } else {
+            return player2Name;
+        }
+    }
+
+    private String ottelunTulos() {
+        return String.format("%s-%s", alustaTulokset.get(player1Score), alustaTulokset.get(player2Score));
+    }
+    
+    private void alustaTulokset() {
+        alustaTulokset.put(0, "Love");
+        alustaTulokset.put(1, "Fifteen");
+        alustaTulokset.put(2, "Thirty");
+        alustaTulokset.put(3, "Forty");
+    }
+    
 }
